@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <h1>Closure</h1> 
+<h3>ans 1: 1,2,3,4 </h3>
+<br>
+<h3>ans 2: 1,0</h3>
+<br>
+<h3>ans 3: 4444</h3>
+<h3>ans 4: 50</h3>
+<h3>ans 5: 12</h3>
+<h3>ans 6: 12 in alert function</h3>
+<h3>ans 7: 12 in alert function</h3>
+<h3>8 :  outerArg = 123/ninnerArg = 456/nouterVar = a/ninnerVar = b/nglobalVar = xyz</h3>
+</body>
+</html>
+<script>
+    // question=1
+function counter(){
+    var counter=0;
+
+    function IncreaseCounter(){
+        return counter+= 1;
+    };
+    return IncreaseCounter;
+}
+var counter = counter();
+console.log(counter());
+console.log(counter());
+console.log(counter());
+console.log(counter());
+
+
+
+    // question=2
+    let count=0;
+    (function(){
+        if(count=== 0){
+            let count=1;
+            console.log(count);
+        }
+        console.log(count);
+    })()
+    // question =3
+for(var i=0; i<4; i++) {
+    setTimeout(function log(){
+        console.log(i);
+    },1000);
+}
+// question = 4;
+function outfun(l){
+    function innerfun(b){
+        return l * b;
+    }
+    return innerfun;
+}
+const l=5;
+const b=10;
+const area = outfun(l)(b);
+console.log(area);
+// question =5
+var a = 12;
+(function (){
+    console.log(a);
+}) ();
+console.log(b)
+// question 6
+var a=12;
+(function(){
+    alert(a);
+})();
+// question 7
+var a= 10;
+var x = (function(){
+    var a = 12;
+    return function(){
+        alert(a);
+    };
+})();
+x();
+// question=8
+var globalVar="xyz";
+
+(function outerFunc(outerArg) {
+    var outerVar= 'a';
+
+    (function innerfunc(innerArg) {
+        var innerVar='b';
+
+        console.log(
+            "outerArg = " + outerArg + "/n" +
+            "innerArg = " + innerArg + "/n" +
+            "outerVar = " + outerVar + "/n" +
+            "innerVar = " + innerVar + "/n" + 
+            "globalVar = " + globalVar);
+    })(456);
+})(123);
+</script>
